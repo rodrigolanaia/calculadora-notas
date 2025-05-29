@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import random
+import random, os
 
 app = Flask(__name__)
 
@@ -45,4 +45,5 @@ def index():
     return render_template("index.html", resultado=resultado, error=error)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # toma el puerto de Render o 5000 si estás local
+    app.run(host="0.0.0.0", port=port)
